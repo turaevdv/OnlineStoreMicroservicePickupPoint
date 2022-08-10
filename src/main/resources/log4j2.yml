@@ -1,0 +1,27 @@
+Configuration:
+  name: Log4j2YAMLConfig
+
+  appenders:
+    Socket:
+      name: socket_appender
+      host: localhost
+      port: 5000
+      JsonLayout:
+        complete: true
+        compact: true
+        LocationInfo: true
+        includeTimeMillis: true
+
+    Console:
+      name: console_appender
+      target: SYSTEM_OUT
+      ignoreExceptions: false
+      PatternLayout:
+        Pattern: "%d{yyyy-MM-dd HH:mm:ss} [%t] %-5p %c:%L - %m%n"
+
+  Loggers:
+    Root:
+      level: info
+      AppenderRef:
+      - ref: socket_appender
+      - ref: console_appender
