@@ -4,13 +4,16 @@ Configuration:
   appenders:
     Socket:
       name: socket_appender
-      host: localhost
-      port: 5000
+      host: ${env:LOGSTASH_HOST:-localhost}
+      port: ${env:LOGSTASH_PORT:-5000}
       JsonLayout:
         complete: true
         compact: true
         LocationInfo: true
         includeTimeMillis: true
+        keyValuePair:
+          - key: environment
+            value: ${env:PROFILE:-default}
 
     Console:
       name: console_appender
